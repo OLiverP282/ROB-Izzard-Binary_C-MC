@@ -8,6 +8,7 @@ from tensorflow.keras import layers
 #from tensorflow.keras.layers.experimental import preprocessing (NEED TF 2.1)
 import seaborn as sns
 import matplotlib.pyplot as plt
+from scipy.interpolate import interp1d
 import numpy as np
 from tensorflow.keras import models
 from tensorflow.keras.models import Sequential
@@ -179,6 +180,10 @@ def array_sorter(x,y):
         d[i] = y[np.where(c[i] == x)]
     return c,d
 
+def interpolater(arrayx,arrayy,x):
+    inter_func = interp1d(arrayx, arrayy)
+    return inter_func(x)
+
 def KSbinarytester(xdata,ydata,model1):
     # Uses a binary search approach to indentify regions of worst match and then returns the corresponding x value
     if len(xdata) != len(ydata):
@@ -219,3 +224,4 @@ def sample_seperator(xdata,ydata,xrem,yrem,model1,N):
     elif len(xrem) >= N:
         Arem , Grem  = array_sorter(xrem, yrem)
         return xdata, ydata, Arem, Grem
+
