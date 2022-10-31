@@ -1,0 +1,2 @@
+model_checkpoint_path: "errors_2_weights51"
+all_model_checkpoint_paths: "errors_2_weights51"
